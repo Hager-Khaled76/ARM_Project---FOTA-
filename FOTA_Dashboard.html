@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>🌸 FOTA Dashboard</title>
+  <style>
+    body {
+      background: linear-gradient(to right, #ffc0cb, #ffe4e1);
+      color: #4b0082;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 30px;
+      min-height: 100vh;
+    }
+
+    h1 {
+      margin-top: 20px;
+      font-size: 2.5rem;
+      color: #ff69b4;
+    }
+
+    .image {
+      width: 150px;
+      margin-top: 20px;
+    }
+
+    .box {
+      background-color: rgba(255, 255, 255, 0.7);
+      padding: 25px;
+      border-radius: 15px;
+      margin-top: 30px;
+      box-shadow: 0 0 15px #ffb6c1;
+      width: 90%;
+      max-width: 500px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: bold;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ff69b4;
+      margin-bottom: 20px;
+      border-radius: 8px;
+      background-color: #fff0f5;
+    }
+
+    button {
+      padding: 12px 20px;
+      background-color: #ff69b4;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      margin: 5px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    button:hover {
+      background-color: #ff1493;
+    }
+
+    .footer {
+      margin-top: 40px;
+      font-size: 0.9rem;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🌸 FOTA Update Panel</h1>
+  <img class="image" src="https://cdn-icons-png.flaticon.com/512/4380/4380747.png" alt="Firmware Icon">
+
+  <div class="box">
+    <label for="version">Firmware Version</label>
+    <input type="text" id="version" placeholder="e.g. 1.0.0"/>
+
+    <label for="url">Firmware Download Link</label>
+    <input type="text" id="url" placeholder="Paste GitHub firmware.bin link"/>
+
+    <label for="token">Security Token</label>
+    <input type="text" id="token" placeholder="Enter your secret token"/>
+
+    <div style="text-align: center;">
+      <button onclick="sendUpdate()">Send Update</button>
+      <button onclick="getVersion()">Get Version</button>
+      <button onclick="resetAll()">Reset</button>
+    </div>
+  </div>
+
+  <div class="footer">
+    Made with 💖 by Hager
+  </div>
+
+  <script>
+    function sendUpdate() {
+      const url = document.getElementById("url").value;
+      const token = document.getElementById("token").value;
+      localStorage.setItem("firmware_url", url);
+      localStorage.setItem("token", token);
+      alert("✅ Firmware link and token sent:\n📦 URL: " + url);
+    }
+
+    function getVersion() {
+      const version = document.getElementById("version").value;
+      localStorage.setItem("firmware_version", version);
+      alert("📌 Version saved: " + version);
+    }
+
+    function resetAll() {
+      localStorage.clear();
+      location.reload();
+    }
+  </script>
+
+</body>
+</html>
